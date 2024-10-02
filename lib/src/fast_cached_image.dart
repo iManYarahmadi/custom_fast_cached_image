@@ -443,15 +443,6 @@ class FastCachedImageConfig {
     return null;
   }
 
-  // ///[_saveImage] is to save an image to cache. Not part of public API.
-  // static Future<void> _saveImage(String url, Uint8List image) async {
-  //   final key = _keyFromUrl(url);
-  //
-  //   await _imageKeyBox!.put(key, DateTime.now());
-  //   await _imageBox!.put(key, image);
-  // }
-  //
-
   ///[_saveImage] is to save an image to cache. Not part of public API.
   static Future<void> _saveImage(
       int? imageUniqueId, Uint8List image, String url) async {
@@ -477,18 +468,6 @@ class FastCachedImageConfig {
     }
   }
 
-  // static Future<void> _replaceImageKey(
-  //     {required String oldKey, required String newKey}) async {
-  //   _checkInit();
-  //
-  //   DateTime? dateCreated = await _imageKeyBox!.get(oldKey);
-  //
-  //   if (dateCreated == null) return;
-  //
-  //   _imageKeyBox!.delete(oldKey);
-  //   _imageKeyBox!.put(newKey, dateCreated);
-  // }
-
   static Future<void> _replaceImageKey(
       {required var oldKey, required var newKey}) async {
     _checkInit();
@@ -501,15 +480,6 @@ class FastCachedImageConfig {
     _imageKeyBox!.put(newKey, dateCreated);
   }
 
-  // static Future<void> _replaceOldImage({
-  //   required String oldKey,
-  //   required String newKey,
-  //   required Uint8List image,
-  // }) async {
-  //   await _imageBox!.delete(oldKey);
-  //   await _imageBox!.put(newKey, image);
-  // }
-
   static Future<void> _replaceOldImage({
     required var oldKey,
     required var newKey,
@@ -518,23 +488,6 @@ class FastCachedImageConfig {
     await _imageBox!.delete(oldKey);
     await _imageBox!.put(newKey, image);
   }
-
-  //old version
-  // ///[deleteCachedImage] function takes in a image [imageUrl] and removes the image corresponding to the url
-  // /// from the cache if the image is present in the cache.
-  // static Future<void> deleteCachedImage(
-  //     {required String imageUrl, bool showLog = true}) async {
-  //   _checkInit();
-  //
-  //   final key = _keyFromUrl(imageUrl);
-  //   if (_imageKeyBox!.keys.contains(key) && _imageBox!.keys.contains(key)) {
-  //     await _imageKeyBox!.delete(key);
-  //     await _imageBox!.delete(key);
-  //     if (showLog) {
-  //       debugPrint('FastCacheImage: Removed image $imageUrl from cache.');
-  //     }
-  //   }
-  // }
 
   ///[deleteCachedImage] function takes in a image [imageUrl] and removes the image corresponding to the url
   /// from the cache if the image is present in the cache.
@@ -592,21 +545,6 @@ class FastCachedImageConfig {
     }
   }
 
-  ///Old IsCachedMethod
-//   ///[isCached] returns a boolean indicating whether the given image is cached or not.
-//   ///Returns true if cached, false if not.
-//   static bool isCached({required String imageUrl}) {
-//     _checkInit();
-//
-//     final key = _keyFromUrl(imageUrl);
-//     if (_imageKeyBox!.containsKey(key) && _imageBox!.keys.contains(key)) {
-//       return true;
-//     }
-//     return false;
-//   }
-//
-//   static _keyFromUrl(String url) => const Uuid().v5(Uuid.NAMESPACE_URL, url);
-// }
   ///[isCached] returns a boolean indicating whether the given image is cached or not.
   ///Returns true if cached, false if not.
   /// [isCached] returns a boolean indicating whether the given image is cached or not.
